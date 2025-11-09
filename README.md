@@ -18,7 +18,7 @@ services:
       ENABLE_MODULES: text2vec-transformers
       TRANSFORMERS_INFERENCE_API: http://wstv:8080
   wstv:
-    image: ghcr.io/metabrobx/weaviate-sbert-vectorizer:all-MiniLM-L6-v2
+    image: ghcr.io/metabronx/weaviate-sbert-vectorizer:all-MiniLM-L6-v2_quint8_avx2
 ```
 
 ## Configuration
