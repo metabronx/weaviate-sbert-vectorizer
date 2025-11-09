@@ -1,13 +1,10 @@
-name: Build Service Image
+name: Run Unit Tests
 
 on: push
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
-    permissions:
-      packages: write
-      contents: read
     steps:
       # clone repo
       - uses: actions/checkout@v5
