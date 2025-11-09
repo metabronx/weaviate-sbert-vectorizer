@@ -1,19 +1,20 @@
 # weaviate-sbert-vectorizer
 
-CPU-only Sentence Transformers vectorizer (embedding) service for Weaviate.
+CPU-only [Sentence Transformers](https://www.sbert.net/index.html) vectorizer (embedding) service for Weaviate.
 
-This service is designed for CPU inference and assumes the [ONNX Runtime](https://onnxruntime.ai/docs/). No GPU is required.
+> Vectorization / Embedding is the process by which human-understandable data (ie. text) is converted into machine-readable numerical representations (vectors) for use in AI systems. Vectors are stored in specialized [vector databases](https://weaviate.io/blog/what-is-a-vector-database) that are optimized for rapid and nuanced information retrieval.
+
+This service is designed for CPU vectorization on a single core using the [ONNX Runtime](https://onnxruntime.ai/docs/). No GPU is required.
 
 Built images contain only the minimum dependencies required, and are thus significantly smaller than those [provided](https://docs.weaviate.io/weaviate/model-providers/transformers/embeddings#available-models) by Weaviate (by ~7GB).
 
 ## Usage
 
-The images of this service are intended to be used with Weaviate `text2vec-transformers` module:
+The images of this service are intended to be used with Weaviate's `text2vec-transformers` module:
 
 ```yaml
 services:
   weaviate:
-    ...
     environment:
       ENABLE_MODULES: text2vec-transformers
       TRANSFORMERS_INFERENCE_API: http://wstv:8080
