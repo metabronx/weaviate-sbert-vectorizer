@@ -19,5 +19,11 @@ jobs:
           enable-cache: true
       - name: Install the project
         run: uv sync --locked --all-extras --dev
+      - name: Cache model
+        id: cache-sbert-model
+        uses: actions/cache@v4
+        with:
+          key: sbert-model-${{ hashFiles('wstv/model.py') }}
+          path: .sbert
       - name: Run tests
-        run: uv run pytest
+        run: SENTENCE_TRANSFORMERS_HOME=.sbert uv run pytest
