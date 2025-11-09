@@ -1,0 +1,34 @@
+[project]
+name = "weaviate-sentence-transformer-vectorizer"
+version = "0.1.0"
+description = "SentenceTransformer vectorizer service for Weaviate"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.121.1",
+    "granian[uvloop]>=2.5.7",
+    "pydantic>=2.12.4",
+    "sentence-transformers[onnx]>=5.1.2",
+]
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28.1",
+    "pyrefly>=0.40.1",
+    "pytest>=8.4.2",
+    "pytest-cov>=7.0.0",
+]
+
+# we don't directly use pytorch, but this is needed to force uv to resolve
+# pytorch to the cpu-only wheel instead of the default CUDA-enabled one on PyPI.
+# this reduces the final image size by ~8GB.
+[tool.uv.sources]
+torch = { index = "pytorch-cpu" }
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+
+[tool.pytest.ini_options]
+addopts = '-ra -vv --cov-report=term -p no:anyio'
+testpaths = ["tests"]
