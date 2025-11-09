@@ -3,7 +3,7 @@ name = "weaviate-sentence-transformer-vectorizer"
 version = "0.1.0"
 description = "SentenceTransformer vectorizer service for Weaviate"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = "~=3.13.0"
 dependencies = [
     "fastapi>=0.121.1",
     "granian[uvloop]>=2.5.7",
